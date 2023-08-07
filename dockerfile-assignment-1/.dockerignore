@@ -9,3 +9,4 @@
 
 # for Node.js apps, you want to build the node_modules in the image, and not copy from host
 node_modules
+npm-debug.log
