@@ -1,10 +1,8 @@
-# create your drupal and postgres config here, based off the last assignment
 version: '3.1'
 
 services:
   cms:
-    build: .
-    image: custom-drupal
+    image: drupal:9
     ports:
       - '8080:80'
     volumes:
@@ -16,16 +14,11 @@ services:
       # existing content of the image at the same location
       - drupal-sites:/var/www/html/sites
     restart: always
-  mariadb-db:
-    image: mariadb
+  postgres-db:
+    image: postgres:14
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: examplepassword
-      MARIADB_DATABASE: mariadb
-      MARIADB_USER: admin
-      MARIADB_PASSWORD: secretuserpassword
-    volumes:
-      - drupal-data:/var/lib/postgresql/data
+      POSTGRES_PASSWORD: examplepassword
 
 # Establishing named volumes
 volumes:
@@ -33,4 +26,3 @@ volumes:
   drupal-profiles:
   drupal-themes:
   drupal-sites:
-  drupal-data:
